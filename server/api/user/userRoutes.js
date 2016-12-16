@@ -28,7 +28,12 @@ router.route('/:user_id').get(function(req,res){
   res.json(user || {});
 });
 
-router.route().put();
+router.route('/:user_id').put();
+router.route('/:user_id').delete(function(req,res){
+  //delete from the database
+  Users.remove({_id:req.params.user_id});
+  //do I need to do anthing with the response?
+});
 
 
 

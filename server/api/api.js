@@ -8,6 +8,6 @@ router.get("/",function(req,res){
     res.json({"error" : false,"message" : "Hello World"});
 });
 router.use('/users', require('./user/userRoutes'));
-router.user('/posts'.require('./post/postRoutes'));
- 
+router.use('/posts', require('./post/postRoutes'));
+router.use('/category', require('./category/categoryRoutes'));
 module.exports = router;

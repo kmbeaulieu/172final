@@ -9,10 +9,34 @@ var router = require('express').Router();
 router.route('/')
   .get(function(req, res){
     console.log('Hey from user!!');
-    res.send({ok: true});
+  //return all users  
+  var users = user.find({});
+  res.body(users);
   });
 
+router.route('/').post(function(req,res){
+  //add a user!
+  var user = req.body;
+  //insert the user into the database. notation might be off for mongoose/mongodb
+  Users.insert(user);
+});
 
+router.route('/:user_id').get(function(req,res){
+  //return the user for this user id. Is this Id the username or mongo's _id value for the user? get from mongodb
+  var user = Users.findOne({_id:req.params.user_id});
+  //this could be res.body instead? Using || {} for if it fails. error handling will be added later
+  res.json(user || {});
+});
+
+router.route().put();
+
+
+
+
+
+
+
+// ERROR HANDLING CODE
 //hmm this currently does not work but I don't have time for the 5 points to sit and figure this out. If I had more time I could look into it.
 router.route('/api/users')
         .get(function(err,req,res){
